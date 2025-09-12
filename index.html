@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tech Cipher Mini App</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#00ffcc">
+<style>
+  body {font-family: monospace; background:#0d0d0d; color:#00ffcc; text-align:center; padding:30px;}
+  textarea {width:90%; height:100px; margin:10px auto; background:#1a1a1a; color:#00ffcc; border:1px solid #00ffcc; padding:10px;}
+  button {background:#00ffcc; color:#0d0d0d; padding:10px 18px; margin:10px; border:none; cursor:pointer; font-weight:700;}
+  button:hover {opacity:0.9;}
+  h1 {color:#00ffaa; margin-bottom:6px;}
+  p.small {color:#9fffe0; font-size:0.9rem;}
+</style>
+</head>
+<body>
+
+<h1>🔒 Tech Cipher — Mini App</h1>
+<p class="small">Type plain text → Encode. Paste encoded text → Decode.</p>
+
+<textarea id="input" placeholder="Type your text here..."></textarea><br>
+
+<button onclick="encode()">Encode</button>
+<button onclick="decode()">Decode</button>
+<button onclick="swapFields()">Swap (Use output as input)</button>
+
+<textarea id="output" placeholder="Result will appear here..."></textarea>
+
+<script>
+const cipher = {
+  A:"AlphaBit",B:"Byte",C:"Cache",D:"Data",E:"Ether",F:"Firewall",
+  G:"Gateway",H:"Hash",I:"Input",J:"Java",K:"Kernel",L:"Logic",
+  M:"Module",N:"Node",O:"Output",P:"Pixel",Q:"Quantum",R:"Router",
+  S:"Script",T:"Token",U:"Upload",V:"Vector",W:"Web",X:"Xeno",
+  Y:"YAML",Z:"ZeroDay"
+};
+const decipher = Object.fromEntries(
+  Object.entries(cipher).map(([k,v]) => [v.toLowerCase(), k])
+);
+
+function encode(){
+  const text = document.getElementById("input").value.toUpperCase();
+  let out = [];
+  const parts = text.split(/\s+/);
+  for (let i = 0; i < parts.length; i++){
+    const word = parts[i];
+    if(word === "") continue;
+    for (let ch of word){
+      if(cipher[ch]) { out.push(cipher[ch]); }
+      else { out.push(ch); }
+    }
+    if(i < parts.length - 1) out.push("//");
+  }
+  document.getElementById("output").value = out.join(" ");
+}
+
+function decode(){
+  const rawInput = document.getElementById("input").value.trim();
+  if(!rawInput){
+    document.getElementById("output").value = "";
+    return;
+  }
+  const tokens = rawInput.split(/\s+/);
+  let words = [];
+  let current = "";
+  for (let raw of tokens){
+    const token = raw.trim();
+    if(!token) continue;
+    if(token === "//" || token === "/" || token === "|"){
+      if(current.length > 0){
+        words.push(current);
+        current = "";
+      }
+      continue;
+    }
+    const lower = token.toLowerCase();
+    if(decipher[lower]){
+      current += decipher[lower];
+      continue;
+    }
+    const m = token.match(/^(.+?)([.,!?;:]+)$/);
+    if(m){
+      const main = m[1].toLowerCase();
+      const punct = m[2] || "";
+      if(decipher[main]){
+        current += decipher[main] + punct;
+        continue;
+      }
+      if(main.length === 1 && /[A-Za-z0-9]/.test(main)){
+        current += main + punct;
+        continue;
+      }
+    }
+    if(token.length === 1 && /[A-Za-z0-9]/.test(token)){
+      current += token;
+      continue;
+    }
+    if(current.length > 0){
+      current += token;
+    } else {
+      current = token;
+    }
+  }
+  if(current.length > 0) words.push(current);
+  const out = words.join(" ");
+  document.getElementById("output").value = out;
+}
+
+function swapFields(){
+  const out = document.getElementById("output").value;
+  document.getElementById("input").value = out;
+  document.getElementById("output").value = "";
+}
+
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js')
+  .then(() => console.log('Service Worker Registered'));
+}
+</script>
+
+</body>
+</html>
