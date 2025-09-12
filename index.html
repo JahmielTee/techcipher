@@ -1,122 +1,139 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tech Cipher Mini App</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Royal Smiles — Home</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#00ffcc">
+<meta name="theme-color" content="#0B3C8D">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  body {font-family: monospace; background:#0d0d0d; color:#00ffcc; text-align:center; padding:30px;}
-  textarea {width:90%; height:100px; margin:10px auto; background:#1a1a1a; color:#00ffcc; border:1px solid #00ffcc; padding:10px;}
-  button {background:#00ffcc; color:#0d0d0d; padding:10px 18px; margin:10px; border:none; cursor:pointer; font-weight:700;}
-  button:hover {opacity:0.9;}
-  h1 {color:#00ffaa; margin-bottom:6px;}
-  p.small {color:#9fffe0; font-size:0.9rem;}
+:root{--royal:#0B3C8D;--gold:#D4A017;--white:#ffffff;--muted:#F6F8FB}
+*{box-sizing:border-box}body{margin:0;font-family:Roboto, Arial, sans-serif;background:linear-gradient(180deg,var(--white),var(--muted));color:#123}
+header{background:var(--royal);color:var(--white);padding:36px 20px;text-align:center;display:flex;align-items:center;gap:18px;justify-content:center}
+.logo{width:96px;height:96px;border-radius:12px;overflow:hidden;flex:0 0 96px;box-shadow:0 6px 18px rgba(11,60,141,0.6)}
+.brand{font-family:'Playfair Display',serif;font-size:28px;letter-spacing:1px}
+.tag{font-size:14px;opacity:.95}
+.container{max-width:1100px;margin:28px auto;padding:0 20px}
+.hero{background:var(--royal);color:var(--white);border-radius:12px;padding:36px;display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:center}
+.hero h1{font-family:'Playfair Display',serif;margin:0;font-size:36px}
+.cta{margin-top:16px}
+.btn{background:var(--gold);color:var(--white);padding:12px 18px;border-radius:8px;text-decoration:none;font-weight:600;display:inline-block}
+.card-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:22px}
+.card{background:var(--white);padding:18px;border-radius:10px;box-shadow:0 6px 20px rgba(18,35,60,0.08)}
+.card h3{margin:6px 0 8px;color:var(--royal)}
+.footer{background:#06223f;color:var(--white);padding:24px;margin-top:28px;border-radius:8px;text-align:center}
+nav{display:flex;gap:14px;align-items:center}
+nav a{color:var(--white);text-decoration:none;font-weight:500}
+.icon-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 12px;border-radius:8px;background:rgba(255,255,255,0.06)}
+.big-cta{font-size:18px;padding:14px 20px;border-radius:10px}
+.searchbox{display:flex;gap:8px}
+.input-field{padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);flex:1}
+#faq-bot{position:fixed;right:18px;bottom:18px;background:var(--royal);color:var(--white);border-radius:999px;padding:14px 16px;box-shadow:0 10px 30px rgba(11,60,141,0.3);cursor:pointer}
+.badge{background:var(--gold);color:var(--royal);padding:6px 10px;border-radius:999px;font-weight:600}
 </style>
 </head>
 <body>
+<header>
+  <img src="icon-192.png" class="logo" alt="Royal Smiles logo">
+  <div>
+    <div class="brand">ROYAL SMILES</div>
+    <div class="tag">Oral Care • Building Bright Smiles</div>
+  </div>
+</header>
 
-<h1>🔒 Tech Cipher — Mini App</h1>
-<p class="small">Type plain text → Encode. Paste encoded text → Decode.</p>
+<div class="container">
+  <div class="hero" role="banner">
+    <div>
+      <h1>Welcome to Royal Smiles</h1>
+      <p>We deliver confident, healthy smiles with modern dental care, paediatric expertise and a family-first approach.</p>
+      <div class="cta">
+        <a class="btn big-cta" href="services.html">View Services</a>
+        <a class="btn" style="background:transparent;border:2px solid var(--gold);color:var(--gold);margin-left:10px" href="education.html">Education Hub</a>
+      </div>
 
-<textarea id="input" placeholder="Type your text here..."></textarea><br>
+      <div class="card-row" style="margin-top:20px">
+        <div class="card">
+          <h3>Family Dentistry</h3>
+          <p>Gentle care for every age—checkups, fillings, and early-childhood dental guidance.</p>
+        </div>
+        <div class="card">
+          <h3>Cosmetic Care</h3>
+          <p>Teeth whitening, veneers and smile design for confident, beautiful smiles.</p>
+        </div>
+        <div class="card">
+          <h3>Orthodontics</h3>
+          <p>Clear aligner options and braces with child-friendly treatment plans.</p>
+        </div>
+      </div>
+    </div>
 
-<button onclick="encode()">Encode</button>
-<button onclick="decode()">Decode</button>
-<button onclick="swapFields()">Swap (Use output as input)</button>
+    <div style="padding:20px;background:linear-gradient(180deg,var(--white),#f1f6fb);border-radius:10px;text-align:center">
+      <img src="icon-512.png" alt="logo" style="width:160px;">
+      <p style="color:#234">Book a consultation now</p>
+      <a class="btn" href="https://wa.me/2348080821226">WhatsApp Us</a>
+      <div style="margin-top:12px;font-size:13px;color:#456">Call: <a href="tel:+2348080821226">+234 808 082 1226</a></div>
+    </div>
+  </div>
 
-<textarea id="output" placeholder="Result will appear here..."></textarea>
+  <section style="margin-top:20px">
+    <h2 style="font-family:'Playfair Display',serif;">Why Choose Royal Smiles</h2>
+    <div style="display:flex;gap:20px;flex-wrap:wrap;margin-top:12px">
+      <div style="flex:1;min-width:220px;background:var(--white);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(18,35,60,0.06)"><strong>Child-friendly</strong><p>We make visits calm and happy for kids.</p></div>
+      <div style="flex:1;min-width:220px;background:var(--white);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(18,35,60,0.06)"><strong>Experienced Team</strong><p>Consult with seasoned dentists and hygienists.</p></div>
+      <div style="flex:1;min-width:220px;background:var(--white);padding:16px;border-radius:10px;box-shadow:0 6px 18px rgba(18,35,60,0.06)"><strong>Modern Clinic</strong><p>State-of-the-art equipment and clean, safe procedures.</p></div>
+    </div>
+  </section>
+</div>
+
+<button id="faq-bot" title="Ask Royal Smiles">💬 FAQ Bot</button>
+
+<footer class="footer">
+  <div>© Royal Smiles • <span class="badge">@royalsmile529</span></div>
+  <div style="margin-top:8px"><a href="contact.html" style="color:var(--white);text-decoration:underline">Contact</a> • <a href="services.html" style="color:var(--white);text-decoration:underline">Services</a> • <a href="education.html" style="color:var(--white);text-decoration:underline">Education Hub</a></div>
+</footer>
+
+<!-- Simple FAQ/chat widget -->
+<div id="chatModal" style="display:none;position:fixed;right:18px;bottom:80px;width:320px;background:var(--white);border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.2);overflow:hidden">
+  <div style="background:var(--royal);color:white;padding:12px;font-weight:600">Royal Smiles — Help</div>
+  <div id="chatBody" style="height:320px;overflow:auto;padding:12px;font-size:14px"></div>
+  <div style="display:flex;gap:8px;padding:12px;border-top:1px solid #eee">
+    <input id="chatInput" class="input-field" placeholder="Ask about kids, care, bookings..." />
+    <button class="btn" onclick="sendChat()">Send</button>
+  </div>
+</div>
 
 <script>
-const cipher = {
-  A:"AlphaBit",B:"Byte",C:"Cache",D:"Data",E:"Ether",F:"Firewall",
-  G:"Gateway",H:"Hash",I:"Input",J:"Java",K:"Kernel",L:"Logic",
-  M:"Module",N:"Node",O:"Output",P:"Pixel",Q:"Quantum",R:"Router",
-  S:"Script",T:"Token",U:"Upload",V:"Vector",W:"Web",X:"Xeno",
-  Y:"YAML",Z:"ZeroDay"
-};
-const decipher = Object.fromEntries(
-  Object.entries(cipher).map(([k,v]) => [v.toLowerCase(), k])
-);
+const faq = [
+  {q:"What should I do for my child's first tooth?", a:"Start cleaning gently with a soft cloth. Schedule the first dental visit by their first birthday."},
+  {q:"How often should we brush?", a:"Brush twice daily with fluoride toothpaste, and supervise children until they can brush well alone."},
+  {q:"When to start orthodontics?", a:"Many patients start evaluation around age 7, but treatment timing varies—book a consultation for personalised advice."},
+  {q:"Do you offer emergency care?", a:"Yes — call our number and we will prioritise urgent dental issues."}
+];
 
-function encode(){
-  const text = document.getElementById("input").value.toUpperCase();
-  let out = [];
-  const parts = text.split(/\s+/);
-  for (let i = 0; i < parts.length; i++){
-    const word = parts[i];
-    if(word === "") continue;
-    for (let ch of word){
-      if(cipher[ch]) { out.push(cipher[ch]); }
-      else { out.push(ch); }
-    }
-    if(i < parts.length - 1) out.push("//");
-  }
-  document.getElementById("output").value = out.join(" ");
-}
+document.getElementById('faq-bot').addEventListener('click', ()=> {
+  const modal = document.getElementById('chatModal');
+  modal.style.display = modal.style.display === 'none' ? 'block' : 'none';
+});
 
-function decode(){
-  const rawInput = document.getElementById("input").value.trim();
-  if(!rawInput){
-    document.getElementById("output").value = "";
-    return;
-  }
-  const tokens = rawInput.split(/\s+/);
-  let words = [];
-  let current = "";
-  for (let raw of tokens){
-    const token = raw.trim();
-    if(!token) continue;
-    if(token === "//" || token === "/" || token === "|"){
-      if(current.length > 0){
-        words.push(current);
-        current = "";
-      }
-      continue;
-    }
-    const lower = token.toLowerCase();
-    if(decipher[lower]){
-      current += decipher[lower];
-      continue;
-    }
-    const m = token.match(/^(.+?)([.,!?;:]+)$/);
-    if(m){
-      const main = m[1].toLowerCase();
-      const punct = m[2] || "";
-      if(decipher[main]){
-        current += decipher[main] + punct;
-        continue;
-      }
-      if(main.length === 1 && /[A-Za-z0-9]/.test(main)){
-        current += main + punct;
-        continue;
-      }
-    }
-    if(token.length === 1 && /[A-Za-z0-9]/.test(token)){
-      current += token;
-      continue;
-    }
-    if(current.length > 0){
-      current += token;
-    } else {
-      current = token;
+function sendChat(){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  const body = document.getElementById('chatBody');
+  body.innerHTML += '<div style="margin:8px 0;text-align:right"><div style="display:inline-block;background:#e6f4ff;padding:8px;border-radius:8px">'+text+'</div></div>';
+  const lower = text.toLowerCase();
+  let found = faq.find(f => lower.includes(f.q.split(' ')[0].toLowerCase()) || (lower.includes('child') && f.q.toLowerCase().includes('child')));
+  if(!found){
+    for(const f of faq){
+      const kws = f.q.toLowerCase().split(/[^a-z]+/).filter(Boolean);
+      if(kws.some(k=>lower.includes(k))) { found = f; break; }
     }
   }
-  if(current.length > 0) words.push(current);
-  const out = words.join(" ");
-  document.getElementById("output").value = out;
-}
-
-function swapFields(){
-  const out = document.getElementById("output").value;
-  document.getElementById("input").value = out;
-  document.getElementById("output").value = "";
-}
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-  .then(() => console.log('Service Worker Registered'));
+  const reply = found ? found.a : "Thanks — a member of our team will reach out. For urgent matters, call +234 808 082 1226";
+  body.innerHTML += '<div style="margin:8px 0;text-align:left"><div style="display:inline-block;background:#f6f7fa;padding:10px;border-radius:8px">'+reply+'</div></div>';
+  body.scrollTop = body.scrollHeight;
+  input.value='';
 }
 </script>
 
